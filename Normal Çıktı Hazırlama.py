@@ -4805,7 +4805,7 @@ start_column = 3
 start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
-repeat_count = 14
+repeat_count = 28
 numbers_per_repeat = 100
 
 # Verileri ekleme
@@ -5146,6 +5146,8 @@ def create_bat_files(data, output_folder, batch_size=28):
         batch_data = []
         remaining_data = remaining_data[batch_size:]
         batch_count += 1
+
+
 
 # Klasör oluştur
 output_folder = "İç Giyim"
