@@ -87,7 +87,7 @@ async def download_file(session, url, index):
 
 
 async def main():
-    base_url = "https://task.haydigiy.com/FaprikaOrderXls/UEVUT6/"
+    base_url = "https://www.siparis.haydigiy.com/FaprikaOrderXls/UEVUT6/"
     urls = [f"{base_url}{i}/" for i in range(1, parca+1)]
 
     async with aiohttp.ClientSession() as session:
@@ -4758,7 +4758,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 100
-numbers_per_repeat = 28
+numbers_per_repeat = 14
 
 # Verileri ekleme
 for _ in range(repeat_count):
@@ -4784,7 +4784,7 @@ start_column = 3
 start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
-repeat_count = 28
+repeat_count = 14
 numbers_per_repeat = 100
 
 # Verileri ekleme
@@ -12946,34 +12946,30 @@ from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 
 # Excel dosyasını oku
-df = pd.read_excel(excel_dosyasi)
+df = pd.read_excel("Kargo Entegrasyonu.xlsx")
 
-# "Id" sütunundaki her verinin başına URL'yi ekleyerek istek gönder
-def send_request(order_id):
-    url = f"https://task.haydigiy.com/admin/order/sendordertoshipmentintegration/?orderId={order_id}"
+# Oturum oluşturma ve giriş yapma işlemini dışarı taşı
+session = requests.Session()
 
-    # Kullanıcı adı ve şifre
+# Oturumu bir kez aç
+def login():
+    login_url = "https://task.haydigiy.com/kullanici-giris/?ReturnUrl=%2Fadmin"
     username = "mustafa_kod@haydigiy.com"
     password = "123456"
-
-    # Oturum açılacak web sitesi
-    login_url = "https://task.haydigiy.com/kullanici-giris/?ReturnUrl=%2Fadmin"
-
-    # İstek başlıkları
+    
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-        "Referer": "https://task.haydigiy.com/",
+        "Referer": "https://taskhaydigiy.com/",
     }
 
-    # Oturum açma sayfasına GET isteği gönderme
-    session = requests.Session()
+    # Oturum açma sayfasına GET isteği
     response = session.get(login_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
     # __RequestVerificationToken değerini alma
     token = soup.find("input", {"name": "__RequestVerificationToken"}).get("value")
 
-    # POST isteği için istek verilerini ayarlama
+    # Giriş verileri
     login_data = {
         "EmailOrPhone": username,
         "Password": password,
@@ -12981,9 +12977,19 @@ def send_request(order_id):
     }
 
     # Oturum açma isteği gönderme
-    response = session.post(login_url, data=login_data, headers=headers)
+    session.post(login_url, data=login_data, headers=headers)
 
-    # URL'ye istek gönderme
+# Oturumu bir kez aç
+login()
+
+# Siparişleri gönderme fonksiyonu
+def send_request(order_id):
+    url = f"https://task.haydigiy.com/admin/order/sendordertoshipmentintegration/?orderId={order_id}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+    }
+
+    # Entegrasyon URL'sine istek gönder
     response = session.get(url, headers=headers)
 
 
