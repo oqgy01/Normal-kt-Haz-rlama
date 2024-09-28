@@ -4758,7 +4758,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 100
-numbers_per_repeat = 14
+numbers_per_repeat = 28
 
 # Verileri ekleme
 for _ in range(repeat_count):
@@ -4784,7 +4784,7 @@ start_column = 3
 start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
-repeat_count = 14
+repeat_count = 28
 numbers_per_repeat = 100
 
 # Verileri ekleme
