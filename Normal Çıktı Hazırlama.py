@@ -30,18 +30,9 @@ from openpyxl.styles import Alignment, Font
 import zipfile
 import datetime
 from concurrent.futures import ThreadPoolExecutor
-from bs4 import BeautifulSoup
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
-
-
-
+import gc
 pd.options.mode.chained_assignment = None
-
-
 init(autoreset=True)
 
 print(" ")
@@ -252,6 +243,10 @@ if __name__ == "__main__":
 
 
 
+file_path = "Hariç Tutulacak Sipariş Numaraları.xlsx"
+
+if os.path.exists(file_path):
+    os.remove(file_path)
 
 
 
@@ -690,6 +685,17 @@ for index, row in sonuc_df.iterrows():
 
 # "birlesik_excel.xlsx" dosyasını güncelleme
 sonuc_df.to_excel("birlesik_excel.xlsx", index=False)
+
+
+
+
+
+file_path = "Raf Kodu.xlsx"
+
+if os.path.exists(file_path):
+    os.remove(file_path)
+
+
 
 
 
@@ -2389,7 +2395,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "0-112.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -2939,7 +2948,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "113-206.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -3482,7 +3494,10 @@ create_bat_files(id_values, output_folder)
 shutil.copy(file_path, os.path.join(output_folder, "0-206.xlsx"))
 
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -4030,7 +4045,10 @@ create_bat_files(id_values, output_folder)
 shutil.copy(file_path, os.path.join(output_folder, "İnstagram Kalanlar.xlsx"))
 
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -4590,7 +4608,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "İnstagram (14).xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -5147,7 +5168,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "İç Giyim.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -5690,7 +5714,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "207-400.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -6228,7 +6255,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "Yeni Depo Kalanlar.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -6771,7 +6801,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "700-857.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -7307,7 +7340,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "700-995.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -7842,7 +7878,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "858-995.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -8386,7 +8425,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "996-1133.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -8917,7 +8959,10 @@ create_bat_files(id_values, output_folder)
 shutil.copy(file_path, os.path.join(output_folder, "996-1269.xlsx"))
 
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -9454,7 +9499,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "1134-1269.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -10000,7 +10048,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "1270-1326.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -10539,7 +10590,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "1327-1459.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -11079,7 +11133,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "1460-1531.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -11654,7 +11711,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "Tüm Depo Kalanlar.xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -12198,7 +12258,10 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "Yeni Depo (14).xlsx"))
 
+gc.collect()
 
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
 
 
 
@@ -12744,6 +12807,13 @@ create_bat_files(id_values, output_folder)
 # Excel dosyasını klasöre taşı
 shutil.copy(file_path, os.path.join(output_folder, "Tüm Depo (14).xlsx"))
 
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
 
 
 #DÜZELTME İÇİN
@@ -12764,21 +12834,6 @@ main_sheet = wb["Sheet1"]
 
 
 
-
-file_path = "Raf Kodu.xlsx"
-
-if os.path.exists(file_path):
-    os.remove(file_path)
-
-
-
-
-
-
-file_path = "Hariç Tutulacak Sipariş Numaraları.xlsx"
-
-if os.path.exists(file_path):
-    os.remove(file_path)
 
 
 
@@ -12939,11 +12994,10 @@ print(Fore.RED + "Siparişler Entegrasyona Gönderiliyor Ekran Kapanana Kadar İ
 
 
 
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
-from tqdm import tqdm
+
+
+
+
 
 # Excel dosyasını oku
 df = pd.read_excel("Kargo Entegrasyonu.xlsx")
@@ -13022,21 +13076,6 @@ except Exception as e:
 
 
 
-# Silmek istediğiniz dosyaların listesi
-dosya_listesi = ["0-112.xlsx", "0-206.xlsx", "113-206.xlsx", "İnstagram (14).xlsx", "İnstagram Kalanlar.xlsx", "İç Giyim.xlsx", "207-400.xlsx", "Tüm Depo Kalanlar.xlsx", "Yeni Depo (14).xlsx", "Tüm Depo (14).xlsx", "1134-1269.xlsx", "996-1269.xlsx", "996-1133.xlsx", "858-995.xlsx", "700-995.xlsx", "700-857.xlsx", "Yeni Depo Kalanlar.xlsx", "1270-1326.xlsx", "1327-1459.xlsx", "1460-1531.xlsx"]
-
-# Dosyaları silme işlemi
-for dosya in dosya_listesi:
-    try:
-        os.remove(dosya)
-    except FileNotFoundError:
-        print(f"'{dosya}' dosyası bulunamadı.")
-    except Exception as e:
-        print(f"'{dosya}' dosyasını silerken bir hata oluştu: {str(e)}")
-
-        
-
-        
 
 # Boş dosyaları kontrol etme ve silme işlemi
 for dosya in ["Kara Liste Siparişleri.xlsx", "Çift Siparişler.xlsx"]:
