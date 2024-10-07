@@ -862,11 +862,11 @@ for group_name, group_data in grouped:
     min_value = group_data["GoogleSheetVerisi Kopya"].min()
     max_value = group_data["GoogleSheetVerisi Kopya"].max()
 
-    if min_value >= 700 and max_value <= 9999:
-        df.loc[df["Id"] == group_name, "Sonuc"] = "700-9999"
+    if min_value >= 700 and max_value <= 1999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "700-1999"
 
 # 0-112 olan satırları ayrı bir DataFrame'e kopyala
-filtered_df = df[df["Sonuc"] == "700-9999"]
+filtered_df = df[df["Sonuc"] == "700-1999"]
 
 # Tekrar Sayısı 6 ve daha büyük olan satırları seç
 high_repeats_rows = filtered_df[filtered_df.groupby("Id")["Id"].transform("count") >= 5]
@@ -884,6 +884,45 @@ df.to_excel(excel_file_path, index=False)
 
 
 
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 2000 and max_value <= 9999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "2000-9999"
+
+# 0-112 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "2000-9999"]
+
+# Tekrar Sayısı 6 ve daha büyük olan satırları seç
+high_repeats_rows = filtered_df[filtered_df.groupby("Id")["Id"].transform("count") >= 5]
+
+# Ayrı Excel dosyasına kaydet
+high_repeats_output_file_path = "Özerler Depo (14).xlsx"
+high_repeats_rows.to_excel(high_repeats_output_file_path, index=False)
+
+# Ana DataFrame'den 6 ve üzeri tekrarları çıkar
+df.drop(index=high_repeats_rows.index, inplace=True)
+
+# Ana Excel dosyasını güncelle
+df.drop(columns=["Sonuc"], inplace=True)
+df.to_excel(excel_file_path, index=False)
 
 
 
@@ -1611,7 +1650,7 @@ for group_name, group_data in grouped:
     min_value = group_data["GoogleSheetVerisi Kopya"].min()
     max_value = group_data["GoogleSheetVerisi Kopya"].max()
 
-    if min_value >= 700 and max_value <= 3000:
+    if min_value >= 700 and max_value <= 1999:
         df.loc[df["Id"] == group_name, "Sonuc"] = "700-1269"
 
 # 700-1269 olan satırları ayrı bir DataFrame'e kopyala
@@ -1637,6 +1676,207 @@ df.to_excel(excel_file_path, index=False)
 
 
 
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"  # Ana Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 2000 and max_value <= 2164:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "2000-2164"
+
+# 996-1269 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "2000-2164"]
+
+# Ayrı Excel dosyasına kaydet
+filtered_output_file_path = "2000-2164.xlsx"  # Ayrı dosyanın adını ve yolunu belirtin
+filtered_df.to_excel(filtered_output_file_path, index=False)
+
+# 996-1269 olan satırları ana DataFrame'den sil
+df = df[df["Sonuc"] != "2000-2164"]
+df.drop(columns=["Sonuc"], inplace=True)  # Sonuc sütununu sil
+
+# Ana Excel dosyasını güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"  # Ana Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 2165 and max_value <= 9999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "2165-2310"
+
+# 996-1269 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "2165-2310"]
+
+# Ayrı Excel dosyasına kaydet
+filtered_output_file_path = "2165-2310.xlsx"  # Ayrı dosyanın adını ve yolunu belirtin
+filtered_df.to_excel(filtered_output_file_path, index=False)
+
+# 996-1269 olan satırları ana DataFrame'den sil
+df = df[df["Sonuc"] != "2165-2310"]
+df.drop(columns=["Sonuc"], inplace=True)  # Sonuc sütununu sil
+
+# Ana Excel dosyasını güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"  # Ana Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 2000 and max_value <= 9999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "2000-9999"
+
+# 700-1269 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "2000-9999"]
+
+# Ayrı Excel dosyasına kaydet
+filtered_output_file_path = "Özerler Depo Kalanlar.xlsx"  # Ayrı dosyanın adını ve yolunu belirtin
+filtered_df.to_excel(filtered_output_file_path, index=False)
+
+# 700-1269 olan satırları ana DataFrame'den sil
+df = df[df["Sonuc"] != "2000-9999"]
+df.drop(columns=["Sonuc"], inplace=True)  # Sonuc sütununu sil
+
+# Ana Excel dosyasını güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"  # Ana Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 0 and max_value <= 1999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "0-1999"
+
+# 700-1269 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "0-1999"]
+
+# Ayrı Excel dosyasına kaydet
+filtered_output_file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"  # Ayrı dosyanın adını ve yolunu belirtin
+filtered_df.to_excel(filtered_output_file_path, index=False)
+
+# 700-1269 olan satırları ana DataFrame'den sil
+df = df[df["Sonuc"] != "0-1999"]
+df.drop(columns=["Sonuc"], inplace=True)  # Sonuc sütununu sil
+
+# Ana Excel dosyasını güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "birlesik_excel.xlsx"  # Ana Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# Yeni bir sütun ekleyerek işlem sonuçlarını tut
+df["Sonuc"] = ""
+
+# Id değerlerine göre grupla ve işlemi yap
+grouped = df.groupby("Id")
+for group_name, group_data in grouped:
+    min_value = group_data["GoogleSheetVerisi Kopya"].min()
+    max_value = group_data["GoogleSheetVerisi Kopya"].max()
+
+    if min_value >= 2000 and max_value <= 9999:
+        df.loc[df["Id"] == group_name, "Sonuc"] = "2000-9999"
+
+# 700-1269 olan satırları ayrı bir DataFrame'e kopyala
+filtered_df = df[df["Sonuc"] == "2000-9999"]
+
+# Ayrı Excel dosyasına kaydet
+filtered_output_file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"  # Ayrı dosyanın adını ve yolunu belirtin
+filtered_df.to_excel(filtered_output_file_path, index=False)
+
+# 700-1269 olan satırları ana DataFrame'den sil
+df = df[df["Sonuc"] != "2000-9999"]
+df.drop(columns=["Sonuc"], inplace=True)  # Sonuc sütununu sil
+
+# Ana Excel dosyasını güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
 
 
 old_file_path = "birlesik_excel.xlsx"
@@ -1644,6 +1884,43 @@ new_file_path = "Tüm Depo Kalanlar.xlsx"
 
 # Dosyanın adını değiştir
 os.rename(old_file_path, new_file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1731,6 +2008,67 @@ df.to_excel(excel_file_path, index=False)
 
 
 
+# Excel dosyasını oku
+excel_file_path = "Özerler Depo Kalanlar.xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# "GoogleSheetVerisi Kopya" ve "Kategori" sütunlarını sil
+columns_to_drop = ["GoogleSheetVerisi Kopya", "Kategori", "Tekrar Sayısı", "Sonuc"]
+df.drop(columns=columns_to_drop, inplace=True)
+
+# Dosyayı güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# "GoogleSheetVerisi Kopya" ve "Kategori" sütunlarını sil
+columns_to_drop = ["GoogleSheetVerisi Kopya", "Kategori", "Tekrar Sayısı", "Sonuc"]
+df.drop(columns=columns_to_drop, inplace=True)
+
+# Dosyayı güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# "GoogleSheetVerisi Kopya" ve "Kategori" sütunlarını sil
+columns_to_drop = ["GoogleSheetVerisi Kopya", "Kategori", "Tekrar Sayısı", "Sonuc"]
+df.drop(columns=columns_to_drop, inplace=True)
+
+# Dosyayı güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Excel dosyasını oku
 excel_file_path = "İç Giyim.xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
@@ -1784,6 +2122,11 @@ df.to_excel(excel_file_path, index=False)
 
 
 
+
+
+
+
+
 # Excel dosyasını oku
 excel_file_path = "Tüm Depo (14).xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
 df = pd.read_excel(excel_file_path)
@@ -1794,6 +2137,26 @@ df.drop(columns=columns_to_drop, inplace=True)
 
 # Dosyayı güncelle
 df.to_excel(excel_file_path, index=False)
+
+
+
+
+
+
+# Excel dosyasını oku
+excel_file_path = "Özerler Depo (14).xlsx"  # Kalanlar Excel dosyasının adını ve yolunu belirtin
+df = pd.read_excel(excel_file_path)
+
+# "GoogleSheetVerisi Kopya" ve "Kategori" sütunlarını sil
+columns_to_drop = ["GoogleSheetVerisi Kopya", "Kategori", "Tekrar Sayısı", "Sonuc"]
+df.drop(columns=columns_to_drop, inplace=True)
+
+# Dosyayı güncelle
+df.to_excel(excel_file_path, index=False)
+
+
+
+
 
 
 
@@ -1822,8 +2185,18 @@ df.to_excel(excel_file_path, index=False)
 
 
 
+
+
+
+
+
+
+
+
+
+
 # Excel dosyalarının adları ve yolları
-excel_files = ["700-857.xlsx", "700-995.xlsx", "858-995.xlsx", "996-1133.xlsx", "996-1269.xlsx", "1134-1269.xlsx", "Yeni Depo Kalanlar.xlsx", "0-112.xlsx", "113-206.xlsx", "0-206.xlsx", "207-400.xlsx", "1270-1326.xlsx", "1327-1459.xlsx", "1460-1531.xlsx",]
+excel_files = ["700-857.xlsx", "700-995.xlsx", "858-995.xlsx", "996-1133.xlsx", "996-1269.xlsx", "1134-1269.xlsx", "Yeni Depo Kalanlar.xlsx", "0-112.xlsx", "113-206.xlsx", "0-206.xlsx", "207-400.xlsx", "1270-1326.xlsx", "1327-1459.xlsx", "1460-1531.xlsx", "2000-2164.xlsx", "2165-2310.xlsx"]
 
 # Sileceğiniz sütunların adları
 columns_to_drop = ["GoogleSheetVerisi Kopya", "Kategori", "Sonuc", "Tekrar Sayısı"]
@@ -1834,7 +2207,6 @@ for excel_file in excel_files:
         df = pd.read_excel(excel_file)
         df.drop(columns=columns_to_drop, inplace=True)
         df.to_excel(excel_file, index=False)
-
 
 
 
@@ -12818,6 +13190,3294 @@ os.remove(file_path)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("Özerler Depo (14).xlsx")
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "Özerler Depo (14).xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("Özerler Depo (14).xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo (14).xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo (14).xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo (14).xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo (14).xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "Özerler Depo (14).xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo (14).xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("Özerler Depo (14).xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 14
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 14
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo (14).xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=14):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "Özerler Depo (14)"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo (14).xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "Özerler Depo (14).xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("2000-2164.xlsx")
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "2000-2164.xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("2000-2164.xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2000-2164.xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2000-2164.xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2000-2164.xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2000-2164.xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "2000-2164.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2000-2164.xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("2000-2164.xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 28
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 28
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("2000-2164.xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=28):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "2000-2164"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "2000-2164.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "2000-2164.xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("2165-2310.xlsx")
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "2165-2310.xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("2165-2310.xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2165-2310.xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2165-2310.xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2165-2310.xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2165-2310.xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "2165-2310.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("2165-2310.xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("2165-2310.xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 28
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 28
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("2165-2310.xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=28):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "2165-2310"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "2165-2310.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "2165-2310.xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("Özerler Depo Kalanlar.xlsx")
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "Özerler Depo Kalanlar.xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("Özerler Depo Kalanlar.xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo Kalanlar.xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("Özerler Depo Kalanlar.xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 28
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 28
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=28):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "Özerler Depo Kalanlar"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "Özerler Depo Kalanlar.xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("Yeni Depo ve İnstagram Kalanlar.xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Yeni Depo ve İnstagram Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Yeni Depo ve İnstagram Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Yeni Depo ve İnstagram Kalanlar.xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Yeni Depo ve İnstagram Kalanlar.xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "Yeni Depo ve İnstagram Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("Yeni Depo ve İnstagram Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("Yeni Depo ve İnstagram Kalanlar.xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 28
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 28
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("Yeni Depo ve İnstagram Kalanlar.xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=28):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "Yeni Depo ve İnstagram Kalanlar"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "Yeni Depo ve İnstagram Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "Yeni Depo ve İnstagram Kalanlar.xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonuc_df = pd.read_excel("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi"]  # "UrunAdi" sütununu kopyala
+sonuc_df["UrunAdi Kopya"] = sonuc_df["UrunAdi Kopya"].str.split("-", n=1).str[1]  # "-" den öncesini temizle
+
+# "UrunAdi Kopya" sütununu "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasına ekleyerek güncelleme
+with pd.ExcelWriter("İnstagram ve Özerler Depo Kalanlar.xlsx") as writer:
+    sonuc_df.to_excel(writer, index=False)
+
+
+
+
+
+
+
+
+
+# "UrunAdi" sütununu en sağına yapıştırma
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdi"]
+
+# "UrunAdiKopya2" sütununda " - " dan sonrasını ve son boşluktan öncesini silme
+sonuc_df["UrunAdiKopya2"] = sonuc_df["UrunAdiKopya2"].apply(lambda x: x.split(" - ")[0].rsplit(" ", 1)[-1].strip() if " - " in x else x)
+
+# "UrunAdiKopya2" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya2")
+column_order.append("UrunAdiKopya2")
+sonuc_df = sonuc_df[column_order]
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("İnstagram ve Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "UrunAdi" sütununu tablonun sonuna bir kez daha kopyalama ve düzenleme
+sonuc_df["UrunAdiKopya3"] = sonuc_df["UrunAdi"].apply(lambda x: x.split(" - ", 1)[0].strip() if " - " in x else x)
+
+# "UrunAdiKopya3" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("UrunAdiKopya3")
+column_order.append("UrunAdiKopya3")
+sonuc_df = sonuc_df[column_order]
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("İnstagram ve Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+
+
+
+# Verileri birleştirip yeni sütun oluşturma
+sonuc_df["BirlesikVeri"] = sonuc_df["UrunAdi Kopya"] + " - " + sonuc_df["UrunAdiKopya2"] + " - " + sonuc_df["Varyant"]
+
+# "BirlesikVeri" sütununu en sağa taşıma
+column_order = list(sonuc_df.columns)
+column_order.remove("BirlesikVeri")
+column_order.append("BirlesikVeri")
+sonuc_df = sonuc_df[column_order]
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("İnstagram ve Özerler Depo Kalanlar.xlsx", index=False)
+
+# "BirlesikVeri" sütunundaki "Beden:" ibaresini çıkarma
+sonuc_df["BirlesikVeri"] = sonuc_df["BirlesikVeri"].str.replace("Beden:", "")
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("İnstagram ve Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+# Belirtilen sütunları silme
+columns_to_drop = ["UrunAdi", "Varyant", "UrunAdi Kopya", "UrunAdiKopya2"]
+sonuc_df.drop(columns_to_drop, axis=1, inplace=True)
+
+# "İnstagram ve Özerler Depo Kalanlar.xlsx" dosyasını güncelleme
+sonuc_df.to_excel("İnstagram ve Özerler Depo Kalanlar.xlsx", index=False)
+
+
+
+
+
+
+# "Id" sütununu teke düşürme
+unique_ids = sonuc_df["Id"].drop_duplicates()
+
+# Yeni bir Excel sayfası oluşturma ve "Id" değerlerini yazma
+with pd.ExcelWriter("İnstagram ve Özerler Depo Kalanlar.xlsx", engine="openpyxl", mode="a") as writer:
+    unique_ids.to_excel(writer, sheet_name="Unique Ids", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 2
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 100
+numbers_per_repeat = 28
+
+# Verileri ekleme
+for _ in range(repeat_count):
+    for num in range(1, numbers_per_repeat + 1):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+sheet = wb["Unique Ids"]
+
+# Başlangıç sütunu ve satırı
+start_column = 3
+start_row = 2
+
+# Toplam tekrar sayısı ve her tekrardaki numara adedi
+repeat_count = 28
+numbers_per_repeat = 100
+
+# Verileri ekleme
+for num in range(1, numbers_per_repeat + 1):
+    for repeat in range(repeat_count):
+        sheet.cell(row=start_row, column=start_column, value=num)
+        start_row += 1
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=1).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+main_sheet = wb["Sheet1"]
+
+# "Id" sütununun verilerini al
+id_column = main_sheet["A"][1:]
+unique_ids_column = unique_ids_sheet["A"][1:]
+
+# Karşılık gelen değerleri bulup "Sheet1" sayfasının en sağında yeni bir sütuna ekle
+new_column = main_sheet.max_column + 1
+main_sheet.cell(row=1, column=new_column, value="Matching Value (3rd Column)")
+
+for id_cell in id_column:
+    id_value = id_cell.value
+    for unique_id_cell in unique_ids_column:
+        if unique_id_cell.value == id_value:
+            matching_value = unique_id_cell.offset(column=2).value
+            main_sheet.cell(row=id_cell.row, column=new_column, value=matching_value)
+            break
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütun başlıklarını değiştir
+new_column_titles = {
+    "Id": "SiparişNO",
+    "BirlesikVeri": "ÜRÜN",
+    "GoogleSheetVerisi": "RAF KODU",
+    "UrunAdiKopya3": "ÜRÜN ADI",
+    "Matching Value": "KUTU",
+    "Matching Value (3rd Column)": "ÇN"
+}
+
+for col_idx, col_name in enumerate(main_sheet.iter_cols(min_col=1, max_col=main_sheet.max_column), start=1):
+    old_title = col_name[0].value
+    new_title = new_column_titles.get(old_title, old_title)
+    col_name[0].value = new_title
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Sütunların yeni sıralaması
+new_column_order = [
+    "RAF KODU",
+    "ÜRÜN",
+    "Barkod",
+    "KUTU",
+    "ÜRÜN ADI",
+    "ÇN",
+    "SiparişNO"
+]
+
+# Yeni bir DataFrame oluştur
+data = main_sheet.iter_rows(min_row=2, values_only=True)
+df = pd.DataFrame(data, columns=[cell.value for cell in main_sheet[1]])
+
+# Sütunları yeni sıralamaya göre düzenle
+df = df[new_column_order]
+
+# Mevcut başlıkları güncelle
+for idx, column_name in enumerate(new_column_order, start=1):
+    main_sheet.cell(row=1, column=idx, value=column_name)
+
+# DataFrame verilerini sayfaya yaz
+for r_idx, row in enumerate(df.values, 2):
+    for c_idx, value in enumerate(row, 1):
+        main_sheet.cell(row=r_idx, column=c_idx, value=value)
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Hücreleri ortala ve ortaya hizala
+for row in main_sheet.iter_rows(min_row=2):
+    for cell in row:
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Kenarlık stili oluştur
+border_style = Border(
+    left=Side(style="thin"),
+    right=Side(style="thin"),
+    top=Side(style="thin"),
+    bottom=Side(style="thin")
+)
+
+# Hücreleri kalın yap, yazı fontunu 14 yap ve kenarlık ekle
+for row in main_sheet.iter_rows():
+    for cell in row:
+        cell.font = Font(bold=True, size=14)
+        cell.border = border_style
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# "RAF KODU" sütununu 45 piksel yap
+main_sheet.column_dimensions["C"].width = 45
+
+# Tüm hücreleri en uygun sütun genişliği olarak ayarla
+for column in main_sheet.columns:
+    max_length = 0
+    column = list(column)
+    for cell in column:
+        try:
+            if len(str(cell.value)) > max_length:
+                max_length = len(cell.value)
+        except:
+            pass
+    adjusted_width = (max_length + 2)
+    main_sheet.column_dimensions[get_column_letter(column[0].column)].width = adjusted_width
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# İlk sütunu (A sütunu) 45 piksel genişliğinde yap
+main_sheet.column_dimensions["A"].width = 45
+main_sheet.column_dimensions["C"].width = 14
+main_sheet.column_dimensions["G"].width = 14
+main_sheet.column_dimensions["D"].width = 9
+main_sheet.column_dimensions["F"].width = 5
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tüm hücrelere "Metni Kaydır" formatını uygula
+for row in main_sheet.iter_rows():
+    for cell in row:
+        new_alignment = copy(cell.alignment)
+        new_alignment.wrap_text = True
+        cell.alignment = new_alignment
+
+# Değişiklikleri kaydet
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+
+
+
+
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+main_sheet = wb["Sheet1"]
+
+# Tabloyu oluşturma
+table = Table(displayName="MyTable", ref=main_sheet.dimensions)
+
+# Tablo stili oluşturma (gri-beyaz)
+style = TableStyleInfo(
+    name="TableStyleLight1", showFirstColumn=False,
+    showLastColumn=False, showRowStripes=True, showColumnStripes=True
+)
+
+# Tabloya stil atama
+table.tableStyleInfo = style
+
+# Tabloyu sayfaya ekleme
+main_sheet.add_table(table)
+
+# Değişiklikleri kaydetme
+wb.save("İnstagram ve Özerler Depo Kalanlar.xlsx")
+
+
+
+
+
+def create_bat_files(data, output_folder, batch_size=28):
+    batch_count = 1
+    batch_data = []
+    remaining_data = data
+
+    while len(remaining_data) > 0:
+        current_batch = remaining_data[:batch_size]
+        batch_data.extend(current_batch)
+
+        bat_file_path = os.path.join(output_folder, f"BAT{batch_count}.bat")
+        with open(bat_file_path, "w") as file:
+            link = f'start "" https://task.haydigiy.com/admin/order/printorder/?orderId={current_batch[0]}&isPdf=False\n'
+            file.write(link)
+            file.write('timeout -t 2\n')  # Add the timeout line
+
+            for value in current_batch[1:]:
+                link = f"https://task.haydigiy.com/admin/order/printorder/?orderId={value}&isPdf=False"
+                file.write(f'start "" {link}\n')
+
+        batch_data = []
+        remaining_data = remaining_data[batch_size:]
+        batch_count += 1
+
+# Klasör oluştur
+output_folder = "İnstagram ve Özerler Depo Kalanlar"
+os.makedirs(output_folder, exist_ok=True)
+
+# Sonuç dosyasını yükle
+file_path = "İnstagram ve Özerler Depo Kalanlar.xlsx"
+wb = load_workbook(file_path)
+unique_ids_sheet = wb["Unique Ids"]
+
+# "Id" sütunundaki verileri al
+id_column = unique_ids_sheet["A"][1:]
+
+# Verileri bir listeye dönüştür
+id_values = [cell.value for cell in id_column if cell.value is not None]
+
+# .bat dosyalarını oluştur ve klasöre kaydet
+create_bat_files(id_values, output_folder)
+
+# Excel dosyasını klasöre taşı
+shutil.copy(file_path, os.path.join(output_folder, "İnstagram ve Özerler Depo Kalanlar.xlsx"))
+
+gc.collect()
+
+# Klasör dışında kalan Excel dosyasını sil
+os.remove(file_path)
+
+
+
+
+
+
+
+
+
+
+
+
+
 #DÜZELTME İÇİN
 # Sonuç dosyasını yükle
 file_path = "Çift Siparişler.xlsx"
@@ -12883,7 +16543,7 @@ main_sheet = wb["Sheet1"]
 
 
 
-folders = ["0-112", "0-206", "113-206", "İnstagram (14)", "İnstagram Kalanlar", "İç Giyim", "207-400", "Tüm Depo Kalanlar", "Yeni Depo (14)", "Tüm Depo (14)", "1134-1269", "996-1269", "996-1133", "858-995", "700-995", "700-857", "Yeni Depo Kalanlar", "1270-1326", "1327-1459", "1460-1531"]
+folders = ["0-112", "0-206", "113-206", "İnstagram (14)", "İnstagram Kalanlar", "İç Giyim", "207-400", "Tüm Depo Kalanlar", "Yeni Depo (14)", "Tüm Depo (14)", "1134-1269", "996-1269", "996-1133", "858-995", "700-995", "700-857", "Yeni Depo Kalanlar", "1270-1326", "1327-1459", "1460-1531", "Özerler Depo (14)", "2000-2164", "2165-2310", "Özerler Depo Kalanlar", "Yeni Depo ve İnstagram Kalanlar", "İnstagram ve Özerler Depo Kalanlar"]
 
 # Bugünkü tarihi al
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -13015,7 +16675,7 @@ def login():
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-        "Referer": "https://taskhaydigiy.com/",
+        "Referer": "https://task.haydigiy.com/",
     }
 
     # Oturum açma sayfasına GET isteği
