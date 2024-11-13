@@ -2377,7 +2377,7 @@ start_column = 2
 start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
-repeat_count = 100
+repeat_count = 200
 numbers_per_repeat = 28
 
 # Verileri ekleme
@@ -2405,7 +2405,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -2958,7 +2958,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -3503,7 +3503,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -4054,7 +4054,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -4618,7 +4618,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 14
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -5178,7 +5178,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -5726,7 +5726,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -6268,7 +6268,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -6813,7 +6813,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -7352,7 +7352,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -7890,7 +7890,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -8437,7 +8437,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -8970,7 +8970,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -9511,7 +9511,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -10060,7 +10060,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -10602,7 +10602,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -11145,7 +11145,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -11723,7 +11723,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -12269,7 +12269,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 14
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -12818,7 +12818,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 14
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -13372,7 +13372,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 14
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -13918,7 +13918,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -14464,7 +14464,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -15004,7 +15004,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -15553,7 +15553,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
@@ -16099,7 +16099,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 28
-numbers_per_repeat = 100
+numbers_per_repeat = 200
 
 # Verileri ekleme
 for num in range(1, numbers_per_repeat + 1):
