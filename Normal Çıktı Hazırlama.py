@@ -5151,7 +5151,7 @@ start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
 repeat_count = 100
-numbers_per_repeat = 28
+numbers_per_repeat = 14
 
 # Verileri ekleme
 for _ in range(repeat_count):
@@ -5177,7 +5177,7 @@ start_column = 3
 start_row = 2
 
 # Toplam tekrar sayısı ve her tekrardaki numara adedi
-repeat_count = 28
+repeat_count = 14
 numbers_per_repeat = 200
 
 # Verileri ekleme
@@ -5496,7 +5496,7 @@ wb.save("İç Giyim.xlsx")
 
 
 
-def create_bat_files(data, output_folder, batch_size=28):
+def create_bat_files(data, output_folder, batch_size=14):
     batch_count = 1
     batch_data = []
     remaining_data = data
