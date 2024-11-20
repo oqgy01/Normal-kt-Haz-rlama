@@ -69,7 +69,7 @@ async def download_file(session, url, index):
 
 
 async def main():
-    base_url = "https://www.siparis.haydigiy.com/FaprikaOrderXls/3AG75G/"
+    base_url = "https://www.siparis.haydigiy.com/FaprikaOrderXls/UEVUT6/"
     urls = [f"{base_url}{i}/" for i in range(1, parca+1)]
 
     async with aiohttp.ClientSession() as session:
