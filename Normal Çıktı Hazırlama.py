@@ -31,14 +31,13 @@ import datetime
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 import gc
+import threading
 pd.options.mode.chained_assignment = None
 init(autoreset=True)
 
 print(" ")
 print(Fore.BLUE + "https://task.haydigiy.com/admin/exportorder/edit/110/")
 print(" ")
-
-parca = int(input(Fore.GREEN + "Kaç Parça İndirilecek: "))
 print("E-Tablo Linki: https://docs.google.com/spreadsheets/d/1FJwRFD6ikSsy3uGFRiKp94Iaj1Jd5xerEzJfxJgS1f8/edit#gid=0")
 user_input = input("E-tabloda Olan Sipariş Numaraları Hariç Tutulsun mu? (E/H): ").strip().upper()
 
@@ -51,85 +50,167 @@ print("/﹋\\")
 print("Mustafa ARI")
 print(" ")
 
+
+
+
 #region / Sipariş Listesini İndirme Birleştirme ve Diğer Ayarlar
 
-async def download_file(session, url, index):
+async def download_file(session, url):
     try:
         async with session.get(url, timeout=aiohttp.ClientTimeout(total=99999)) as response:
             if response.status == 200:
-                file_name = f"link_{index}.xlsx"
+                file_name = "link_1.xlsx"
                 content = await response.read()
                 with open(file_name, "wb") as file:
                     file.write(content)
     except asyncio.TimeoutError:
-        print(f"Zaman aşımı hatası: İndirme {index} için zaman aşıma uğradı.")
-
-
+        print("Zaman aşımı hatası: İndirme başarısız oldu.")
 
 async def main():
-    base_url = "https://www.siparis.haydigiy.com/FaprikaOrderXls/UEVUT6/"
-    urls = [f"{base_url}{i}/" for i in range(1, parca+1)]
+    url = "https://www.siparis.haydigiy.com/FaprikaOrderXls/UEVUT6/1"
 
     async with aiohttp.ClientSession() as session:
-        tasks = [download_file(session, url, index + 1) for index, url in enumerate(urls)]
-        await asyncio.gather(*tasks)
+        await download_file(session, url)
 
-    # Excel dosyalarını birleştirip verileri çıkartma
-    data_frames = []
-    for i in range(1, parca+1):
-        file_name = f"link_{i}.xlsx"
+    # Excel dosyasını işleme
+    file_name = "link_1.xlsx"
+    if os.path.exists(file_name):
         df = pd.read_excel(file_name)
-        data_frames.append(df)
 
-    combined_df = pd.concat(data_frames, ignore_index=True)
+        # İstenen sütunları seçme
+        selected_columns = ["Id", "OdemeTipi", "TeslimatTelefon", "Barkod", "Adet", "TeslimatEPostaAdresi", "SiparisToplam", "Varyant", "UrunAdi", "KargoTakipNumarasi", "KargoFirmasi"]
+        
+        # "TeslimatTelefon" sütununda replace yapma
+        df['TeslimatTelefon'] = df['TeslimatTelefon'].replace(r'[()/-]', '', regex=True)
 
-    # İstenen sütunları seçme
-    selected_columns = ["Id", "OdemeTipi", "TeslimatTelefon", "Barkod", "Adet", "TeslimatEPostaAdresi", "SiparisToplam", "Varyant", "UrunAdi", "KargoTakipNumarasi", "KargoFirmasi"]
-    
-     # "TeslimatTelefon" sütununda replace yapma
-    combined_df['TeslimatTelefon'] = combined_df['TeslimatTelefon'].replace(r'[()/-]', '', regex=True)
+        # "TeslimatTelefon" sütunundaki tüm değerleri sayıya çevirme
+        df["TeslimatTelefon"] = df["TeslimatTelefon"].apply(pd.to_numeric, errors='coerce')
 
-    # "TeslimatTelefon" sütunundaki tüm değerleri sayıya çevirme
-    combined_df["TeslimatTelefon"] = combined_df["TeslimatTelefon"].apply(pd.to_numeric, errors='coerce')
-    final_df = combined_df[selected_columns]
-   
-    # Virgül ve sonrasını kaldırarak stringi sayıya çevirme işlemi
-    def clean_and_convert(value):
-        try:
-            cleaned_value = value.split(',')[0]  # Virgülden önceki kısmı al
-            numeric_value = float(cleaned_value)  # Düzenlenmiş veriyi sayıya çevir
-            return numeric_value
-        except ValueError:
-            return None  # Dönüşüm başarısızsa veya veri boşsa None döndür
+        # Virgül ve sonrasını kaldırarak stringi sayıya çevirme işlemi
+        def clean_and_convert(value):
+            try:
+                cleaned_value = value.split(',')[0]  # Virgülden önceki kısmı al
+                numeric_value = float(cleaned_value)  # Düzenlenmiş veriyi sayıya çevir
+                return numeric_value
+            except (ValueError, AttributeError):
+                return None  # Dönüşüm başarısızsa veya veri boşsa None döndür
 
-    # "Adet" ve "SiparisToplam" sütunlarını temizleme ve dönüştürme
-    final_df['Adet'] = final_df['Adet'].apply(clean_and_convert)
-    final_df['SiparisToplam'] = final_df['SiparisToplam'].apply(clean_and_convert)
-   
-    # Düzenlenmiş verileri mevcut dosyanın üzerine kaydetme
-    final_df.to_excel("birlesik_excel.xlsx", index=False)
- 
-    # Birleştirilmiş verileri yeni bir Excel dosyasına kaydetme
-    yeni_dosya_adi = "birlesik_excel.xlsx"
-    final_df.to_excel(yeni_dosya_adi, index=False)
+        # "Adet" ve "SiparisToplam" sütunlarını temizleme ve dönüştürme
+        df['Adet'] = df['Adet'].apply(clean_and_convert)
+        df['SiparisToplam'] = df['SiparisToplam'].apply(clean_and_convert)
 
-    # İndirilen dosyaları silme
-    for i in range(1, parca+1):
-        file_name = f"link_{i}.xlsx"
+        # Seçilen sütunlardan yeni bir DataFrame oluşturma
+        final_df = df[selected_columns]
+
+        # Düzenlenmiş verileri yeni bir Excel dosyasına kaydetme
+        yeni_dosya_adi = "birlesik_excel.xlsx"
+        final_df.to_excel(yeni_dosya_adi, index=False)
+
+        # Kaynak dosya adı
+        kaynak_excel = "birlesik_excel.xlsx"
+
+        # Kopya dosya adı
+        kopya_excel = "Kargo Entegrasyonu.xlsx"
+
+        # Dosyayı kopyala
+        shutil.copy(kaynak_excel, kopya_excel)
+
+        # İndirilen dosyayı silme
         if os.path.exists(file_name):
             os.remove(file_name)
-           
+    else:
+        print("Dosya indirilemedi, işlem gerçekleştirilemedi.")
+
 if __name__ == "__main__":
     asyncio.run(main())
+#endregion
 
-# Kaynak dosya adı
-kaynak_excel = "birlesik_excel.xlsx"
+#region / Entegrasyona Gönderme
 
-# Kopya dosya adı (istediğiniz adı ve konumu belirtin)
-kopya_excel = "Kargo Entegrasyonu.xlsx"
+# Oturum oluşturma ve giriş yapma işlemini dışarı taşı
+session = requests.Session()
 
-# Dosyayı kopyala
-shutil.copy(kaynak_excel, kopya_excel)
+# Oturumu bir kez aç
+def login():
+    login_url = "https://task.haydigiy.com/kullanici-giris/?ReturnUrl=%2Fadmin"
+    username = "mustafa_kod@haydigiy.com"
+    password = "123456"
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+        "Referer": "https://task.haydigiy.com/",
+    }
+
+    # Oturum açma sayfasına GET isteği
+    response = session.get(login_url, headers=headers)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # __RequestVerificationToken değerini alma
+    token = soup.find("input", {"name": "__RequestVerificationToken"}).get("value")
+
+    # Giriş verileri
+    login_data = {
+        "EmailOrPhone": username,
+        "Password": password,
+        "__RequestVerificationToken": token,
+    }
+
+    # Oturum açma isteği gönderme
+    session.post(login_url, data=login_data, headers=headers)
+
+# Siparişleri gönderme fonksiyonu
+def send_request(order_id):
+    url = f"https://task.haydigiy.com/admin/order/sendordertoshipmentintegration/?orderId={order_id}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+    }
+    response = session.get(url, headers=headers)
+
+# Arka planda çalışacak entegrasyon işlemi
+def background_process():
+    # Excel dosyasını oku
+    excel_dosyasi = "Kargo Entegrasyonu.xlsx"
+    df = pd.read_excel(excel_dosyasi)
+
+    # Filtreleme işlemleri
+    df = df[df['KargoTakipNumarasi'].isna()]
+    df = df[df['KargoFirmasi'] != 'MNG KARGO']
+    df = df[df['KargoFirmasi'] != 'KARGOİST']
+    df = df[['Id']].drop_duplicates()
+
+    # Güncellenmiş veriyi aynı Excel dosyasına kaydet
+    df.to_excel(excel_dosyasi, index=False)
+
+    # Oturum açma işlemi
+    login()
+
+    # ThreadPoolExecutor kullanarak istekleri paralel olarak gönderme
+    with ThreadPoolExecutor(max_workers=5) as executor, tqdm(total=len(df['Id']), desc="Entegrasyona Gönderiliyor") as pbar:
+        futures = [executor.submit(send_request, order_id) for order_id in df['Id']]
+        for future in futures:
+            future.result()
+            pbar.update(1)
+
+    # İşlem tamamlandıktan sonra Excel dosyasını sil
+    try:
+        os.remove(excel_dosyasi)
+        pass
+    except FileNotFoundError:
+        print(Fore.YELLOW + f"{excel_dosyasi} adlı Excel dosyası bulunamadı.")
+    except Exception as e:
+        print(Fore.RED + f"Hata oluştu: {e}")
+
+# Ana işlem
+def main():
+    # Arka planda çalışacak thread'i başlat
+    background_thread = threading.Thread(target=background_process, daemon=True)
+    background_thread.start()
+
+    # Diğer işlemler bu sırada devam eder
+    print(Fore.GREEN + "Arka Planda Siparişler Entegrasyona Gönderiliyor...")
+
+if __name__ == "__main__":
+    main()
 
 #endregion
 
@@ -1835,113 +1916,6 @@ for folder in folders:
 
 #endregion
 
-#region / Entegrasyona Gönderme
-
-# Excel dosyasının adını belirtin
-excel_dosyasi = "Kargo Entegrasyonu.xlsx"
-
-# Excel dosyasını yükle
-df = pd.read_excel(excel_dosyasi)
-
-# "KargoTakipNumarasi" sütununda dolu olan satırları sil
-df = df[df['KargoTakipNumarasi'].isna()]
-
-
-# "KargoFirmasi" sütununda "MNG KARGO" değerine sahip olan satırları sil
-df = df[df['KargoFirmasi'] != 'MNG KARGO']
-
-# "KargoFirmasi" sütununda "MNG KARGO" değerine sahip olan satırları sil
-df = df[df['KargoFirmasi'] != 'KARGOİST']
-
-# "Id" sütunu hariç diğer tüm sütunları sil
-df = df[['Id']]
-
-# Aynı Excel dosyasına kaydet (üzerine yaz)
-df.to_excel(excel_dosyasi, index=False)
-
-# Excel dosyasını oku
-df = pd.read_excel(excel_dosyasi)
-
-# "Id" sütunu hariç diğer tüm sütunları sil
-df = df[['Id']].drop_duplicates()
-
-# Güncellenmiş veriyi aynı Excel dosyasına kaydet (mevcut dosyanın üzerine yazacak)
-df.to_excel(excel_dosyasi, index=False)
-
-print(" ")
-print(Fore.RED + "Siparişler Entegrasyona Gönderiliyor Ekran Kapanana Kadar İşlem Yapmayın !")
-
-# Excel dosyasını oku
-df = pd.read_excel("Kargo Entegrasyonu.xlsx")
-
-# Oturum oluşturma ve giriş yapma işlemini dışarı taşı
-session = requests.Session()
-
-# Oturumu bir kez aç
-def login():
-    login_url = "https://task.haydigiy.com/kullanici-giris/?ReturnUrl=%2Fadmin"
-    username = "mustafa_kod@haydigiy.com"
-    password = "123456"
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-        "Referer": "https://task.haydigiy.com/",
-    }
-
-    # Oturum açma sayfasına GET isteği
-    response = session.get(login_url, headers=headers)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # __RequestVerificationToken değerini alma
-    token = soup.find("input", {"name": "__RequestVerificationToken"}).get("value")
-
-    # Giriş verileri
-    login_data = {
-        "EmailOrPhone": username,
-        "Password": password,
-        "__RequestVerificationToken": token,
-    }
-
-    # Oturum açma isteği gönderme
-    session.post(login_url, data=login_data, headers=headers)
-
-# Oturumu bir kez aç
-login()
-
-# Siparişleri gönderme fonksiyonu
-def send_request(order_id):
-    url = f"https://task.haydigiy.com/admin/order/sendordertoshipmentintegration/?orderId={order_id}"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-    }
-
-    # Entegrasyon URL'sine istek gönder
-    response = session.get(url, headers=headers)
-
-
-
-# ThreadPoolExecutor kullanarak istekleri paralel olarak gönderme
-with ThreadPoolExecutor(max_workers=5) as executor, tqdm(total=len(df['Id']), desc="Entegrasyona Gönderiliyor") as pbar:
-    futures = [executor.submit(send_request, order_id) for order_id in df['Id']]
-    for future in futures:
-        future.result()  # İşlem tamamlandığında bir sonraki adıma geç
-        pbar.update(1)  # İlerleme çubuğunu güncelle
-
-
-# Excel dosyasının adı
-excel_dosyasi = "Kargo Entegrasyonu.xlsx"
-
-# Excel dosyasını sil
-try:
-    os.remove(excel_dosyasi)
-    pass
-except FileNotFoundError:
-    print(f"{excel_dosyasi} adlı Excel dosyası bulunamadı.")
-except Exception as e:
-    print(f"Hata oluştu: {e}")
-
-#endregion
-
 #region / Çift Siparişler ve Kara Liste Kontrolü
 
 # Boş dosyaları kontrol etme ve silme işlemi
@@ -1958,3 +1932,6 @@ for dosya in ["Kara Liste Siparişleri.xlsx", "Çift Siparişler.xlsx"]:
         print(f"'{dosya}' dosyasını kontrol ederken bir hata oluştu: {str(e)}")
 
 #endregion
+
+
+
