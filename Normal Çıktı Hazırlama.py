@@ -1100,7 +1100,7 @@ excel_files = [
     "700-857.xlsx", "700-995.xlsx", "858-995.xlsx", "996-1133.xlsx", "996-1269.xlsx", 
     "1134-1269.xlsx", "Yeni Depo Kalanlar.xlsx", "0-112.xlsx", "113-206.xlsx", "0-206.xlsx", 
     "207-400.xlsx", "1270-1326.xlsx", "1327-1459.xlsx", "1460-1531.xlsx", "2000-2164.xlsx", 
-    "2165-2310.xlsx", "Özerler Depo (14).xlsx", "Tüm Depo (14).xlsx", "Yeni Depo (14).xlsx", 
+    "2165-9999.xlsx", "Özerler Depo (14).xlsx", "Tüm Depo (14).xlsx", "Yeni Depo (14).xlsx", 
     "İnstagram (14).xlsx", "İç Giyim.xlsx", "İnstagram ve Özerler Depo Kalanlar.xlsx", 
     "Yeni Depo ve İnstagram Kalanlar.xlsx", "Özerler Depo Kalanlar.xlsx", "İnstagram Kalanlar.xlsx", 
     "Tüm Depo Kalanlar.xlsx"
@@ -1958,4 +1958,3 @@ for dosya in ["Kara Liste Siparişleri.xlsx", "Çift Siparişler.xlsx"]:
         print(f"'{dosya}' dosyasını kontrol ederken bir hata oluştu: {str(e)}")
 
 #endregion
-
